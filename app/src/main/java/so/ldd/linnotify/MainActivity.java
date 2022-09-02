@@ -27,8 +27,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent serviceStart = new Intent(this, LinNotificationListener.class);
-        getApplicationContext().startForegroundService(serviceStart);
-    }
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, new LinNotifySettingsFragment()).commit();
 
+        Intent serviceStart = new Intent(this, LinNotificationListener.class);
+        serviceStart.setAction(LinNotificationListener.ACTION_START);
+        getApplicationContext().startForegroundService(serviceStart);
+
+        Log.d("main", serviceStart.toString());
+    }
 }
