@@ -162,6 +162,7 @@ public class LinNotificationListener extends NotificationListenerService {
             String jsonString = new JSONObject()
                     .put("title", extras.get(Notification.EXTRA_TITLE) == null ? null : extras.get(Notification.EXTRA_TITLE).toString())
                     .put("text", extras.get(Notification.EXTRA_TEXT) == null ? null : extras.get(Notification.EXTRA_TEXT).toString())
+                    .put("big_text", extras.get(Notification.EXTRA_BIG_TEXT) == null ? null : extras.get(Notification.EXTRA_BIG_TEXT).toString())
                     .put("id", sbn.getId())
                     .put("removal", isRemoval)
                     .put("package", sbn.getPackageName())
