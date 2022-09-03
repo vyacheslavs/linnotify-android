@@ -163,7 +163,7 @@ public class LinNotificationListener extends NotificationListenerService {
                     .put("title", extras.get(Notification.EXTRA_TITLE) == null ? null : extras.get(Notification.EXTRA_TITLE).toString())
                     .put("text", extras.get(Notification.EXTRA_TEXT) == null ? null : extras.get(Notification.EXTRA_TEXT).toString())
                     .put("big_text", extras.get(Notification.EXTRA_BIG_TEXT) == null ? null : extras.get(Notification.EXTRA_BIG_TEXT).toString())
-                    .put("id", sbn.getId())
+                    .put("id", sbn.getKey())
                     .put("removal", isRemoval)
                     .put("package", sbn.getPackageName())
                     .put("progress", extras.getInt(Notification.EXTRA_PROGRESS))
@@ -190,9 +190,6 @@ public class LinNotificationListener extends NotificationListenerService {
         int port = Integer.parseInt(Objects.equals(portStr, "") ? "7777" : portStr);
 
         Log.d("LinNotificationListener", "new notification " + bundle2string(sbn.getNotification().extras));
-        Log.d("LinNotificationListener", "new notification will be posted to " + hostname + ":" + port);
-        Log.d("LinNotificationListener", "notification_id = " + sbn.getId());
-        Log.d("LinNotificationListener", "notification_key = " + sbn.getKey());
 
         if (hostname.length()>0) {
             sendNotification(sbn, "http://" + hostname + ":" + port+"/notify", false);
@@ -228,7 +225,6 @@ public class LinNotificationListener extends NotificationListenerService {
         int port = Integer.parseInt(Objects.equals(portStr, "") ? "7777" : portStr);
 
         Log.d("LinNotificationListener", "removed notification " + bundle2string(sbn.getNotification().extras));
-        Log.d("LinNotificationListener", "new notification will be posted to " + hostname + ":" + port);
 
         if (hostname.length()>0) {
             sendNotification(sbn, "http://" + hostname + ":" + port+"/notify", true);
