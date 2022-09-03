@@ -164,6 +164,10 @@ public class LinNotificationListener extends NotificationListenerService {
                     .put("text", extras.get(Notification.EXTRA_TEXT) == null ? null : extras.get(Notification.EXTRA_TEXT).toString())
                     .put("id", sbn.getId())
                     .put("removal", isRemoval)
+                    .put("package", sbn.getPackageName())
+                    .put("progress", extras.getInt(Notification.EXTRA_PROGRESS))
+                    .put("progress_indeterminate", extras.getBoolean(Notification.EXTRA_PROGRESS_INDETERMINATE))
+                    .put("progress_max", extras.getInt(Notification.EXTRA_PROGRESS_MAX))
                     .put("icon", Base64.getEncoder().encodeToString(bytes))
                     .toString();
 
