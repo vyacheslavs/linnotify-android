@@ -166,13 +166,13 @@ public class LinNotificationListener extends NotificationListenerService {
                     .put("id", sbn.getKey())
                     .put("removal", isRemoval)
                     .put("package", sbn.getPackageName())
+                    .put("ongoing", sbn.isOngoing())
                     .put("progress", extras.getInt(Notification.EXTRA_PROGRESS))
                     .put("progress_indeterminate", extras.getBoolean(Notification.EXTRA_PROGRESS_INDETERMINATE))
                     .put("progress_max", extras.getInt(Notification.EXTRA_PROGRESS_MAX))
                     .put("icon", Base64.getEncoder().encodeToString(bytes))
                     .toString();
 
-            Log.d("LinNotificationListener", "sending POST: " + jsonString);
             post(url, jsonString);
         } catch (JSONException | PackageManager.NameNotFoundException e) {
             e.printStackTrace();
